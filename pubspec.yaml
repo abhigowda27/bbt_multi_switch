@@ -1,0 +1,73 @@
+name: bbtml_new
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_bloc: ^9.1.1
+  provider: ^6.1.5
+  pin_code_fields: ^8.0.1
+  flutter_secure_storage: ^10.3.1
+  flutter_native_contact_picker: ^0.0.11
+  intl: ^0.20.2
+  image_picker: ^1.1.2
+  qr_flutter: ^4.1.0
+  share_plus: ^12.0.1
+  flutter_svg: ^2.0.5
+  network_info_plus: ^7.0.0
+  connectivity_plus:
+  permission_handler: ^12.0.1
+  dio: ^5.8.0+1
+  flutter_launcher_icons: ^0.14.4
+  shared_preferences: ^2.2.3
+  device_info_plus: ^12.3.0
+  cached_network_image: ^3.4.0
+  shimmer: ^3.0.0
+  path_provider: ^2.1.4
+  fluttertoast: ^9.0.0
+  sleek_circular_slider: ^2.0.1
+  font_awesome_flutter: ^10.12.0
+  geolocator: ^14.0.2
+  carousel_slider: ^5.1.1
+  speech_to_text: ^7.3.0
+  string_similarity: ^2.1.1
+  wifi_iot: ^0.3.19+2
+  wifi_scan: ^0.4.1+2
+  mobile_scanner: ^7.1.4
+  app_settings: ^7.0.0
+  v: ^0.0.0-origin.0.1
+  basic_utils: ^5.8.2
+  file_picker: ^11.0.3
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/BBT_Logo_BG.png"
+  min_sdk_android: 21
+  background_color_ios: "#999999"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/json/
+    - assets/images/appliance/
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-Medium.ttf

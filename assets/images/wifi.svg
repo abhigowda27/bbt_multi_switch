@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 29 29" id="wifi">
+  <path d="M15.01 8.49a8.5 8.5 0 0 1 0 12.02" fill="none" stroke="#000" stroke-width="2" stroke-miterlimit="10"></path>
+  <path d="M17.839 5.661C20.182 8.004 21.5 11.186 21.5 14.5s-1.318 6.496-3.661 8.839" fill="none" stroke="#000" stroke-width="2" stroke-miterlimit="10"></path>
+  <path d="M20.667 2.833C23.76 5.926 25.5 10.126 25.5 14.5s-1.74 8.574-4.833 11.667" fill="none" stroke="#000" stroke-width="2" stroke-miterlimit="10"></path>
+  <path d="M9 9a5.5 5.5 0 1 0 0 11A5.5 5.5 0 1 0 9 9zm2.5 6.5H10V17a1 1 0 1 1-2 0v-1.5H6.5a1 1 0 1 1 0-2H8V12a1 1 0 1 1 2 0v1.5h1.5a1 1 0 1 1 0 2z"></path>
+</svg>

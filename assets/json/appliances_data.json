@@ -1,0 +1,60 @@
+{
+  "version": "1.1",
+  "last_updated": "2025-01-01",
+  "appliances": [
+    {
+      "id": "HA-001",
+      "code": "LIGHT",
+      "name": "Light",
+      "category": "Electrical"
+    },
+    {
+      "id": "HA-002",
+      "code": "FAN",
+      "name": "Ceiling Fan",
+      "category": "Electrical"
+    },
+    {
+      "id": "HA-003",
+      "code": "AC",
+      "name": "Air Conditioner",
+      "category": "HVAC"
+    },
+    {
+      "id": "HA-004",
+      "code": "TV",
+      "name": "Television",
+      "category": "Entertainment"
+    },
+    {
+      "id": "HA-005",
+      "code": "FRIDGE",
+      "name": "Refrigerator",
+      "category": "Kitchen"
+    },
+    {
+      "id": "HA-006",
+      "code": "WM",
+      "name": "Washing Machine",
+      "category": "Laundry"
+    },
+    {
+      "id": "HA-007",
+      "code": "MW",
+      "name": "Microwave Oven",
+      "category": "Kitchen"
+    },
+    {
+      "id": "HA-009",
+      "code": "GEYSER",
+      "name": "Water Heater",
+      "category": "Utility"
+    },
+    {
+      "id": "HA-011",
+      "code": "DOOR_LOCK",
+      "name": "Door Lock",
+      "category": "Security"
+    }
+  ]
+}
