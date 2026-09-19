@@ -11,7 +11,7 @@ void showSnackBar(BuildContext context, String message) {
       backgroundColor: Theme.of(context).appColors.background,
       content: Row(
         children: [
-          Icon(FontAwesomeIcons.triangleExclamation,
+          FaIcon(FontAwesomeIcons.triangleExclamation,
               color: Theme.of(context).appColors.redButton, size: 30),
           Flexible(
             child: Padding(

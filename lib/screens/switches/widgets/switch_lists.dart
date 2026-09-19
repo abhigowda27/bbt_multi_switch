@@ -6,11 +6,9 @@ import 'package:bbtml_new/common/search_utils.dart';
 import 'package:bbtml_new/screens/switches/widgets/multi_switch_list.dart';
 import 'package:bbtml_new/theme/app_colors_extension.dart';
 import 'package:bbtml_new/widgets/common_snackbar.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'fan_controller_widget.dart';
 
@@ -338,7 +336,7 @@ class _SwitchesCardState extends State<SwitchesCard> {
                         children: const [
                           Tooltip(
                             message: "2 Columns",
-                            child: Icon(FontAwesomeIcons.tableCellsLarge),
+                            child: FaIcon(FontAwesomeIcons.tableCellsLarge),
                           ),
                           Tooltip(
                             message: "3 Columns",
@@ -421,8 +419,8 @@ class _SwitchesCardState extends State<SwitchesCard> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Center(
-                                          child: CachedNetworkImage(
-                                            imageUrl: imageUrl ?? "",
+                                          child: Image.network(
+                                            imageUrl ?? "",
                                             height: _gridColumns == 2
                                                 ? screenWidth * 0.12
                                                 : screenWidth * 0.1,
@@ -432,22 +430,7 @@ class _SwitchesCardState extends State<SwitchesCard> {
                                             color: Theme.of(context)
                                                 .appColors
                                                 .background,
-                                            placeholder: (context, url) =>
-                                                Shimmer.fromColors(
-                                              baseColor: Colors.grey.shade300,
-                                              highlightColor:
-                                                  Colors.grey.shade100,
-                                              child: Container(
-                                                height: screenWidth * 0.1,
-                                                width: screenWidth * 0.1,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey,
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                ),
-                                              ),
-                                            ),
-                                            errorWidget:
+                                            errorBuilder:
                                                 (context, url, error) => Icon(
                                               Icons.image_outlined,
                                               color: Theme.of(context)

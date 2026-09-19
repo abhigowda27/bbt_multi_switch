@@ -90,7 +90,7 @@ class _NearbyWifiPageState extends State<NearbyWifiPage> {
         title: const Text("Nearby WiFi Networks"),
         actions: [
           IconButton(
-            icon: const Icon(FontAwesomeIcons.arrowsRotate),
+            icon: const FaIcon(FontAwesomeIcons.arrowsRotate),
             onPressed: fetchNearbyWifi,
           )
         ],

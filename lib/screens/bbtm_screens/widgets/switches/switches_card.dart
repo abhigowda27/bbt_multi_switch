@@ -378,7 +378,7 @@ class SwitchCardState extends State<SwitchCard> {
                                     );
                                   });
                             },
-                            icon: Icon(
+                            icon: FaIcon(
                               FontAwesomeIcons.penToSquare,
                               color: Theme.of(context).appColors.textPrimary,
                             )),
@@ -703,7 +703,11 @@ class SwitchCardState extends State<SwitchCard> {
 
                                             setState(() {
                                               widget.switchDetails.switchTypes
-                                                  .remove(switchType);
+                                                  .removeWhere(
+                                                (element) =>
+                                                    element["name"] ==
+                                                    switchType,
+                                              );
                                             });
                                             setDialogState(() {});
                                           }

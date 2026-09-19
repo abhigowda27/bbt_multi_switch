@@ -30,8 +30,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.bbtml_new"
-    compileSdk flutter.compileSdkVersion
+    namespace "com.belbird.bbtml"
+    compileSdk 37
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -54,7 +54,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 29
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 37
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true

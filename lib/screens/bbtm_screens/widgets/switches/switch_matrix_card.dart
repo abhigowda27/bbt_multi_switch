@@ -61,7 +61,7 @@ class _SwitchMatrixCardState extends State<SwitchMatrixCard> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Icon(
+          FaIcon(
             FontAwesomeIcons.solidLightbulb,
             color: switchOff ? Colors.yellow : Colors.grey,
             size: 40,

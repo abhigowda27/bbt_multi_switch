@@ -16,8 +16,7 @@ import '../models/switch_model.dart';
 class StorageController {
   final FlutterSecureStorage storage = FlutterSecureStorage(
     aOptions: AndroidOptions(
-      storageCipherAlgorithm: StorageCipherAlgorithm.AES_GCM_NoPadding,
-      migrateOnAlgorithmChange: true,
+      migrateWithBackup: true,
     ),
   );
 
@@ -271,8 +270,10 @@ class StorageController {
         (element) => element.switchSSID == switchDetails.switchSSID);
 
     if (index != -1) {
-      // Remove the specific switch type
-      switchList[index].switchTypes.remove(typeToRemove);
+      // Remove the specific switch type map where name matches
+      switchList[index].switchTypes.removeWhere(
+            (element) => element["name"] == typeToRemove,
+          );
 
       // If no switchTypes left, remove the whole switch
       if (switchList[index].switchTypes.isEmpty) {
@@ -433,8 +434,10 @@ class StorageController {
         routerList.indexWhere((element) => element.switchID == switchId);
 
     if (index != -1) {
-      // Remove the specific switchType
-      routerList[index].switchTypes.remove(switchTypeToRemove);
+      // Remove the specific switchType map where name matches
+      routerList[index].switchTypes.removeWhere(
+            (element) => element["name"] == switchTypeToRemove,
+          );
 
       // If no switchTypes left, remove the whole router
       if (routerList[index].switchTypes.isEmpty) {

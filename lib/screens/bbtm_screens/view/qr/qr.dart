@@ -116,7 +116,8 @@ class _QRPageState extends State<QRPage> {
       final directory = await getTemporaryDirectory();
       File imgFile = File("${directory.path}/qrCode.png");
       await imgFile.writeAsBytes(pngBytes);
-
+      debugPrint("========${imgFile.path}");
+      debugPrint("========${imgFile.path}");
       // Get the RenderBox for iPad popover (sharePositionOrigin)
       final box = navigatorKey.currentContext!.findRenderObject() as RenderBox?;
       final shareOrigin = (box != null)

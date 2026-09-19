@@ -106,7 +106,7 @@ class SmartDevice {
 class Esp32MultiDiscovery {
   static const int udpPort = 8888;
   static const String broadcastAddress = "255.255.255.255";
-  static const Duration timeoutDuration = Duration(seconds: 3);
+  static const Duration timeoutDuration = Duration(seconds: 2);
 
   Future<List<SmartDevice>> discoverAllDevices() async {
     List<SmartDevice> foundDevices = [];

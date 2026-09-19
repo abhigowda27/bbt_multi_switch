@@ -231,7 +231,7 @@ class _GroupFanSwitchControlState extends State<GroupFanSwitchControl> {
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Theme.of(context).appColors.background),
                     ),
-                    Icon(
+                    FaIcon(
                       FontAwesomeIcons.fan,
                       size: width * 0.1,
                       color: Theme.of(context).appColors.background,

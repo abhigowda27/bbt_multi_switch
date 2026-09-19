@@ -1,4 +1,5 @@
 import 'package:bbtml_new/main.dart';
+import 'package:bbtml_new/theme/app_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -18,7 +19,7 @@ class FactoryReset extends StatefulWidget {
 }
 
 class _FactoryResetState extends State<FactoryReset> {
-  final TextEditingController _controller = TextEditingController();
+  final PinInputController _controller = PinInputController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final StorageController _storageController = StorageController();
 
@@ -44,21 +45,27 @@ class _FactoryResetState extends State<FactoryReset> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
-              PinCodeTextField(
-                autoDisposeControllers: false,
-                appContext: context,
+              MaterialPinField(
                 length: 4,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                enableActiveFill: false,
                 autoFocus: true,
-                enablePinAutofill: false,
-                errorTextSpace: 0,
-                showCursor: true,
-                cursorColor: const Color(0xFF4B39EF),
                 obscureText: false,
                 hintCharacter: '-',
-                controller: _controller,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                theme: MaterialPinTheme(
+                  elevation: 5,
+                  textStyle: Theme.of(context).textTheme.titleLarge,
+                  shape: MaterialPinShape.outlined,
+                  cellSize: const Size(56, 64),
+                  borderRadius: BorderRadius.circular(8),
+                  focusedFillColor: Theme.of(context).appColors.background,
+                  filledFillColor: Theme.of(context).appColors.background,
+                  fillColor: Theme.of(context).appColors.background,
+                  errorBorderColor: Theme.of(context).appColors.redButton,
+                  focusedBorderColor: Theme.of(context).appColors.primary,
+                  borderColor: Theme.of(context).appColors.textSecondary,
+                  hintCharacter: '-',
+                ),
+                pinController: _controller,
               ),
               CustomButton(
                 text: "Confirm",

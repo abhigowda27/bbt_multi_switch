@@ -13,6 +13,7 @@ class CustomTextField extends StatelessWidget {
   final void Function(String query)? onChanged;
   final Icon? prefixIcon;
   final List<TextInputFormatter>? inputFormatters;
+  final bool? disableCopyPaste;
   const CustomTextField({
     super.key,
     required this.controller,
@@ -25,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.prefixIcon,
     this.inputFormatters,
+    this.disableCopyPaste = false,
   });
 
   @override
@@ -40,7 +42,12 @@ class CustomTextField extends StatelessWidget {
       maxLength: maxLength,
       onChanged: onChanged,
       keyboardType: keyboardType,
-      contextMenuBuilder: null,
+      enableInteractiveSelection: !disableCopyPaste!,
+      contextMenuBuilder: disableCopyPaste!
+          ? (BuildContext context, EditableTextState editableTextState) {
+              return const SizedBox.shrink();
+            }
+          : null,
       inputFormatters: inputFormatters,
       style: Theme.of(context).textTheme.titleSmall,
       decoration: InputDecoration(

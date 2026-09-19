@@ -318,10 +318,6 @@ class _RouterOnOffState extends State<RouterOnOff> {
                                         return;
                                       }
 
-                                      // Connected to router without internet → Make local API calls
-                                      final totalSwitches = widget
-                                          .routerDetails.switchTypes.length;
-
                                       try {
                                         List<Future<void>> apiCalls = [];
 
@@ -493,7 +489,7 @@ class _RouterOnOffState extends State<RouterOnOff> {
                                                   .background),
                                     ),
                                     const SizedBox(width: 10),
-                                    const Icon(
+                                    const FaIcon(
                                       FontAwesomeIcons.fan,
                                       size: 35,
                                       color: Colors.deepPurpleAccent,

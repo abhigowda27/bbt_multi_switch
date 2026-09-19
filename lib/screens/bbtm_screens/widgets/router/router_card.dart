@@ -557,7 +557,7 @@ class _RouterCardState extends State<RouterCard> {
                                           );
 
                                           if (confirm == true) {
-                                            _storageController
+                                            await _storageController
                                                 .deleteOneSwitchTypeFromRouter(
                                               switchId:
                                                   widget.routerDetails.switchID,
@@ -565,7 +565,11 @@ class _RouterCardState extends State<RouterCard> {
                                             );
                                             setState(() {
                                               widget.routerDetails.switchTypes
-                                                  .remove(switchType);
+                                                  .removeWhere(
+                                                (element) =>
+                                                    element["name"] ==
+                                                    switchType,
+                                              );
                                             });
                                             setDialogState(() {});
                                           }

@@ -19,7 +19,7 @@ class OTPPage extends StatefulWidget {
 }
 
 class _OTPPageState extends State<OTPPage> {
-  final TextEditingController _controller = TextEditingController();
+  final PinInputController _controller = PinInputController();
   final LoginBloc _verifyOtpBloc = LoginBloc();
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
@@ -76,40 +76,38 @@ class _OTPPageState extends State<OTPPage> {
             SizedBox(height: screenWidth * 0.1),
             Form(
               key: _formKey,
-              child: PinCodeTextField(
-                appContext: context,
+              child: MaterialPinFormField(
                 length: 6,
-                enablePinAutofill: false,
-                errorTextSpace: 20,
-                showCursor: true,
-                cursorColor: Theme.of(context).appColors.primary,
-                hintCharacter: '-',
-                textStyle:
-                    TextStyle(color: Theme.of(context).appColors.textSecondary),
-                controller: _controller,
+                pinController: _controller,
+                autoFocus: true,
+                enablePaste: false,
+                theme: MaterialPinTheme(
+                  textStyle: Theme.of(context).textTheme.titleLarge,
+                  shape: MaterialPinShape.outlined,
+                  cellSize: const Size(56, 64),
+                  borderRadius: BorderRadius.circular(8),
+                  focusedFillColor: Theme.of(context).appColors.background,
+                  filledFillColor: Theme.of(context).appColors.background,
+                  fillColor: Theme.of(context).appColors.background,
+                  errorBorderColor: Theme.of(context).appColors.redButton,
+                  focusedBorderColor: Theme.of(context).appColors.primary,
+                  borderColor: Theme.of(context).appColors.textSecondary,
+                  borderWidth: 2,
+                  hintCharacter: '-',
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'OTP is required';
                   }
-                  final RegExp regex = RegExp(r'^\d{6}$'); // exactly 6 digits
+                  final RegExp regex = RegExp(r'^\d{6}$');
                   if (!regex.hasMatch(value.trim())) {
                     return 'Enter a valid 6-digit OTP';
                   }
-                  return null; // valid
+                  return null;
                 },
-                pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(8),
-                  activeFillColor: Theme.of(context).appColors.background,
-                  inactiveFillColor: Theme.of(context).appColors.background,
-                  selectedFillColor: Theme.of(context).appColors.background,
-                  errorBorderColor: Theme.of(context).appColors.redButton,
-                  activeColor: Theme.of(context).appColors.primary,
-                  inactiveColor: Theme.of(context).appColors.textSecondary,
-                  selectedColor: Theme.of(context).appColors.primary,
-                  borderWidth: 2,
-                ),
+                onChanged: (value) => debugPrint('Changed: $value'),
+                onCompleted: (pin) => debugPrint('PIN: $pin'),
               ),
             ),
             SizedBox(

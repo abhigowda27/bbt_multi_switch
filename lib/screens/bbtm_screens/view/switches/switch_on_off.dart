@@ -413,7 +413,7 @@ class _SwitchOnOffState extends State<SwitchOnOff> {
                                   ),
                                 ),
                                 const SizedBox(width: 10),
-                                const Icon(
+                                const FaIcon(
                                   FontAwesomeIcons.fan,
                                   size: 35,
                                   color: Colors.deepPurpleAccent,

@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final Color? bgmColor;
   final GestureTapCallback onPressed;
-  final IconData? icon;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,7 @@ class CustomButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (icon != null) ...[
-            Icon(
-              icon,
-              color: Theme.of(context).appColors.background,
-            ),
+            icon!,
             const SizedBox(width: 8),
           ],
           Text(

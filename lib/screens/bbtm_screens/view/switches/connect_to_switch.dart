@@ -44,7 +44,10 @@ class _ConnectToSwitchPageState extends State<ConnectToSwitchPage> {
                 if (widget.switchDetails.switchTypes.isNotEmpty ||
                     widget.switchDetails.selectedFan!.isNotEmpty)
                   CustomButton(
-                    icon: Icons.lightbulb_outlined,
+                    icon: Icon(
+                      Icons.lightbulb_outlined,
+                      color: Theme.of(context).appColors.background,
+                    ),
                     text: "Connect to ${widget.switchDetails.switchSSID}",
                     onPressed: () {
                       if (!isSameWifi(

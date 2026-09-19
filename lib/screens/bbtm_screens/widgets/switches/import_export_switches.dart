@@ -38,11 +38,11 @@ Future<void> _pickAndImportSwitches(VoidCallback onImported) async {
     allowedExtensions: ['json'],
   );
 
-  if (result == null) {
+  if (result.isEmpty) {
     return;
   }
 
-  final path = result.files.single.path;
+  final path = result.single.path;
 
   if (path == null) {
     showFlutterToast("Unable to read selected file");

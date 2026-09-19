@@ -53,7 +53,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   CustomButton(
                     text: "Finger Prints (Locks)",
-                    icon: Icons.fingerprint_outlined,
+                    icon: Icon(
+                      Icons.fingerprint_outlined,
+                      color: Theme.of(context).appColors.background,
+                    ),
                     onPressed: () {
                       Navigator.push(
                           navigatorKey.currentContext!,
@@ -63,7 +66,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   CustomButton(
                     text: "Factory Reset",
-                    icon: Icons.lock_reset_rounded,
+                    icon: Icon(
+                      Icons.lock_reset_rounded,
+                      color: Theme.of(context).appColors.background,
+                    ),
                     bgmColor: Theme.of(context).appColors.redButton,
                     onPressed: () async {
                       List<SwitchDetails> switches =

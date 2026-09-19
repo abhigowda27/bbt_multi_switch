@@ -40,7 +40,7 @@ class _AddGroupCloudPageState extends State<AddGroupCloudPage> {
     return false;
   }
 
-  bool _isAllSelected(String mainUid, List<dynamic> subSwitches) {
+  bool isAllSelected(String mainUid, List<dynamic> subSwitches) {
     if (subSwitches.isEmpty) return false;
     int mainIndex =
         _selectedSwitches.indexWhere((m) => m["main_uid"] == mainUid);

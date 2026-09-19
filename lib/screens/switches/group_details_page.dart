@@ -2,7 +2,8 @@ import 'package:bbtml_new/blocs/switch/switch_bloc.dart';
 import 'package:bbtml_new/blocs/switch/switch_event.dart';
 import 'package:bbtml_new/common/api_status.dart';
 import 'package:bbtml_new/common/common_state.dart';
-import 'package:bbtml_new/screens/bbtm_screens/widgets/custom/toast.dart';
+import 'package:bbtml_new/screens/bbtm_screens/controllers/storage.dart';
+import 'package:bbtml_new/screens/bbtm_screens/models/router_model.dart';
 import 'package:bbtml_new/screens/switches/widgets/fan_controller_widget.dart';
 import 'package:bbtml_new/screens/switches/widgets/group_card_multi.dart';
 import 'package:bbtml_new/theme/app_colors_extension.dart';
@@ -32,6 +33,28 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
   String? _pendingToggleId;
   bool? _previousToggleValue;
   bool _initialized = false;
+  final StorageController _storageController = StorageController();
+  List<RouterDetails> _allRouters = [];
+
+  Future<void> _fetchRouters() async {
+    final routers = await _storageController.readRouters();
+
+    if (!mounted) return;
+
+    setState(() {
+      _allRouters = routers;
+    });
+
+    debugPrint("Loaded routers: ${_allRouters.length}");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _fetchRouters();
+  }
+
   void setValues(Map<String, dynamic> switchesDetails) {
     final statusConfigs = switchesDetails["deviceStatus"] ?? [];
 
@@ -68,6 +91,40 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
     debugPrint("?????$statusList");
     debugPrint("?????$fanStatusList");
     debugPrint("?????$multiStatusList");
+  }
+
+  int _getSwitchOrder(
+    Map<String, dynamic> device,
+    String parentDeviceId,
+    List<dynamic> multiSwitches,
+  ) {
+    final deviceName = device["device_name"]?.toString();
+
+    RouterDetails? matchingRouter;
+
+    for (final router in _allRouters) {
+      if (router.deviceMacId == parentDeviceId) {
+        matchingRouter = router;
+        break;
+      }
+    }
+
+    // Get order from router configuration
+    if (matchingRouter != null) {
+      for (final switchType in matchingRouter.switchTypes) {
+        if (switchType["name"] == deviceName && switchType["order"] != null) {
+          return switchType["order"]!;
+        }
+      }
+    }
+
+    // Fallback to API order
+    final switchDevices =
+        multiSwitches.where((device) => device["device_type"] == 1).toList();
+
+    final index = switchDevices.indexOf(device);
+
+    return index >= 0 ? index + 1 : 1;
   }
 
   @override
@@ -198,7 +255,7 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
           final responseData = apiResponse.response;
 
           if (responseData != null && responseData["status"] == "success") {
-            showFlutterToast(responseData["message"], type: ToastType.success);
+            commonSnackBar(context, responseData["message"]);
           }
         } else if (apiResponse is ApiFailureState) {
           final exception = apiResponse.exception.toString();
@@ -284,7 +341,7 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
             switchMap["device_id"] = device["device_id"];
             switchMap["main_uid"] = device["uid"];
             switchMap["main_device_name"] = device["device_name"];
-            switchMap["device_type"] = device["device_type"];
+            // switchMap["device_type"] = device["device_type"];
 
             selectedChildren.add(switchMap);
           }
@@ -482,13 +539,17 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
           Row(
             spacing: 10,
             children: [
-              Icon(
-                isFan
-                    ? FontAwesomeIcons.fan
-                    : Icons.power_settings_new_outlined,
-                size: 20,
-                color: Theme.of(context).appColors.textSecondary,
-              ),
+              isFan
+                  ? FaIcon(
+                      FontAwesomeIcons.fan,
+                      size: 20,
+                      color: Theme.of(context).appColors.textSecondary,
+                    )
+                  : Icon(
+                      Icons.power_settings_new_outlined,
+                      size: 20,
+                      color: Theme.of(context).appColors.textSecondary,
+                    ),
               Text(
                 isFan ? "Fan Control" : "Power Control",
                 style: Theme.of(context).textTheme.titleMedium,
@@ -607,18 +668,44 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
 
         for (final child in children) {
           final String childUid = child["uid"]?.toString() ?? "";
+          final deviceType = child["device_type"] ?? 0;
 
           if (childUid.isEmpty) {
             continue;
           }
 
-          await toggleSwitch(
+          final int switchOrder = _getSwitchOrder(
+            child,
             deviceId,
-            newValue ? "ON" : "OFF",
-            childUid,
-            3,
-            parentUid,
+            children,
           );
+          final String status = newValue ? "ON$switchOrder" : "OFF$switchOrder";
+
+          debugPrint(
+            "Multi Switch -> "
+            "${child["device_name"]} -> "
+            "Order: $switchOrder -> "
+            "Status: $status"
+            "deviceType: $deviceType",
+          );
+          if (deviceType == 1) {
+            await toggleSwitch(
+              deviceId,
+              status,
+              childUid,
+              3,
+              parentUid,
+            );
+          }
+          if (deviceType == 2) {
+            await toggleSwitch(
+              deviceId,
+              newValue ? "HIGH" : "OFF",
+              childUid,
+              3,
+              parentUid,
+            );
+          }
         }
 
         continue;

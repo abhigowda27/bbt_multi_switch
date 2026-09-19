@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app_settings/app_settings.dart';
+import 'package:bbtml_new/common/local_auth.dart';
 import 'package:bbtml_new/main.dart';
 import 'package:bbtml_new/screens/bbtm_screens/view/home_screen.dart';
 import 'package:bbtml_new/screens/bbtm_screens/view/qr/generate_qr.dart';
@@ -16,7 +17,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../controllers/storage.dart';
 import '../controllers/wifi.dart';
-import '../widgets/qr_pin.dart';
 import 'contacts/contacts_page.dart';
 import 'groups/group_page.dart';
 import 'mac/mac_page.dart';
@@ -264,19 +264,33 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 return GestureDetector(
                   onTap: () async {
                     if (item.name == 'Generate QR') {
-                      final qrPin = await _storageController.getQrPin();
-                      PinDialog pinDialog =
-                          PinDialog(navigatorKey.currentContext!);
-                      pinDialog.showPinDialog(
-                        isFirstTime: qrPin == null,
-                        onSuccess: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const GenerateQRPage(),
-                            ),
-                          );
-                        },
+                      // final qrPin = await _storageController.getQrPin();
+                      // PinDialog pinDialog =
+                      //     PinDialog(navigatorKey.currentContext!);
+                      // pinDialog.showPinDialog(
+                      //   isFirstTime: qrPin == null,
+                      //   onSuccess: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => const GenerateQRPage(),
+                      //       ),
+                      //     );
+                      //   },
+                      // );
+                      final authService = LocalAuthService();
+
+                      final authenticated = await authService.authenticate();
+
+                      if (!authenticated || !context.mounted) {
+                        return;
+                      }
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const GenerateQRPage(),
+                        ),
                       );
                     } else {
                       Navigator.push(

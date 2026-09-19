@@ -120,6 +120,7 @@ class _AddNewRouterPageState extends State<AddNewRouterPage> {
                 ),
                 richTxt(text: "Router Password"),
                 CustomTextField(
+                  disableCopyPaste: true,
                   controller: _password,
                   validator: (value) {
                     if (value!.length <= 7) {

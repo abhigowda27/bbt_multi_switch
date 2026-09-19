@@ -6,7 +6,7 @@ import 'package:bbtml_new/common/common_state.dart';
 import 'package:bbtml_new/screens/switches/add_group_page.dart';
 import 'package:bbtml_new/screens/switches/group_details_page.dart';
 import 'package:bbtml_new/theme/app_colors_extension.dart';
-import 'package:bbtml_new/widgets/common_snackbar.dart' as CustomSnackBar;
+import 'package:bbtml_new/widgets/common_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -125,7 +125,7 @@ class _GroupPageCloudState extends State<GroupPageCloud> {
           // Delete successful
           _switchBloc.add(GetGroupListEvent());
 
-          CustomSnackBar.commonSnackBar(context, "Group deleted successfully");
+          commonSnackBar(context, "Group deleted successfully");
         }
       },
       child: Scaffold(

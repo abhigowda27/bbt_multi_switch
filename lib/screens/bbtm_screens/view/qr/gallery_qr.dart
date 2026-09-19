@@ -259,7 +259,10 @@ class _GalleryQRPageState extends State<GalleryQRPage> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: CustomButton(
-                        icon: FontAwesomeIcons.circleArrowRight,
+                        icon: FaIcon(
+                          FontAwesomeIcons.circleArrowRight,
+                          color: Theme.of(context).appColors.background,
+                        ),
                         text: "Proceed",
                         onPressed: () {
                           final wifiName = NetworkService().wifiName;

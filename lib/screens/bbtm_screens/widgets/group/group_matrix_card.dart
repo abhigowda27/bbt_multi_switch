@@ -68,7 +68,7 @@ class GroupMatrixCard extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: onRefresh,
-                  icon: Icon(
+                  icon: FaIcon(
                     FontAwesomeIcons.arrowsRotate,
                     color: Theme.of(context).appColors.buttonBackground,
                   ),

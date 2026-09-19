@@ -199,6 +199,7 @@ class _UpdateSwitchPageState extends State<UpdatePage> {
                 ),
                 richTxt(text: "Switch Password"),
                 CustomTextField(
+                  disableCopyPaste: true,
                   obscureText: !_showPassword,
                   controller: _password,
                   validator: (value) {
@@ -223,6 +224,7 @@ class _UpdateSwitchPageState extends State<UpdatePage> {
                 ),
                 richTxt(text: "Confirm Password"),
                 CustomTextField(
+                  disableCopyPaste: true,
                   obscureText: !_showConfirmPassword,
                   controller: _password1,
                   suffixIcon: IconButton(
@@ -258,10 +260,12 @@ class _UpdateSwitchPageState extends State<UpdatePage> {
                     }
                     return null;
                   },
+                  disableCopyPaste: true,
                   hintText: "New Pin",
                 ),
                 richTxt(text: "Switch PassKey"),
                 CustomTextField(
+                  disableCopyPaste: true,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "PassKey Cannot be empty";

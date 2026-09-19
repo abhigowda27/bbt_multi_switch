@@ -6,10 +6,8 @@ import 'package:bbtml_new/common/common_state.dart';
 import 'package:bbtml_new/theme/app_colors_extension.dart';
 import 'package:bbtml_new/widgets/common_snackbar.dart';
 import 'package:bbtml_new/widgets/shimmer_loader.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'fan_controller_widget.dart';
 
@@ -253,24 +251,12 @@ class _MultiDevicesWidgetState extends State<MultiDevicesWidget> {
             child: Row(children: [
               Expanded(
                 flex: 2,
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl ?? "",
+                child: Image.network(
+                  imageUrl ?? "",
                   height: screenWidth * 0.1,
                   width: screenWidth * 0.1,
                   color: Theme.of(context).appColors.textSecondary,
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    child: Container(
-                      height: screenWidth * 0.1,
-                      width: screenWidth * 0.1,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => Icon(
+                  errorBuilder: (context, url, error) => Icon(
                     Icons.image_outlined,
                     color: Theme.of(context)
                         .appColors
@@ -517,24 +503,12 @@ class _MultiDevicesWidgetState extends State<MultiDevicesWidget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CachedNetworkImage(
-                              imageUrl: imageUrl,
+                            Image.network(
+                              imageUrl,
                               height: screenWidth * 0.1,
                               width: screenWidth * 0.1,
                               color: Theme.of(context).appColors.background,
-                              placeholder: (context, url) => Shimmer.fromColors(
-                                baseColor: Colors.grey.shade300,
-                                highlightColor: Colors.grey.shade100,
-                                child: Container(
-                                  height: screenWidth * 0.1,
-                                  width: screenWidth * 0.1,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                              ),
-                              errorWidget: (context, url, error) => Icon(
+                              errorBuilder: (context, url, error) => Icon(
                                 Icons.image_outlined,
                                 color: Theme.of(context)
                                     .appColors

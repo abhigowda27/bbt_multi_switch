@@ -43,4 +43,9 @@ class SharedPreferenceServices {
   String? getOtpCookie() {
     return pref.getString(registerCookie);
   }
+
+  Future<void> removeCookies() async {
+    await pref.remove(authCookie);
+    await pref.remove(registerCookie);
+  }
 }

@@ -37,7 +37,10 @@ class _ConnectToSwitchWidgetState extends State<ConnectToGroupWidget> {
             if (widget.selectedSwitches
                 .any((element) => element.switchTypes.isNotEmpty)) ...[
               CustomButton(
-                  icon: Icons.lightbulb,
+                  icon: Icon(
+                    Icons.lightbulb,
+                    color: Theme.of(context).appColors.background,
+                  ),
                   text: "Connect to Group Switch",
                   onPressed: () {
                     final wifiName = NetworkService().wifiName;

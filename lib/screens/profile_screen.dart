@@ -102,6 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       responseData["status"] == "success") {
                     showSnackBar(context, "User Logged out successfully!");
                     SharedPreferenceServices().saveLoggedInStatus(false);
+                    SharedPreferenceServices().removeCookies();
                     navigateToHome();
                   }
                 } else if (apiResponse is ApiLoadingState) {
@@ -181,8 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(
-                  color: Theme.of(context).appColors.grey
-                    .withValues(alpha: 0.5)),
+                  color:
+                      Theme.of(context).appColors.grey.withValues(alpha: 0.5)),
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 20),
             onTap: () => _showThemeDialog(context),
@@ -204,8 +205,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
               side: BorderSide(
-                  color: Theme.of(context).appColors.grey
-                    .withValues(alpha: 0.5)),
+                  color:
+                      Theme.of(context).appColors.grey.withValues(alpha: 0.5)),
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 20),
             onTap: _showLogoutDialog,
@@ -270,8 +271,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: isSelected ? appColors.primary : appColors.grey
-                          .withValues(alpha: 0.3),
+                        color: isSelected
+                            ? appColors.primary
+                            : appColors.grey.withValues(alpha: 0.3),
                       ),
                     ),
                     child: Row(

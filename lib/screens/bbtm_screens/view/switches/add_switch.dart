@@ -202,6 +202,7 @@ class _AddNewSwitchesPageState extends State<AddNewSwitchesPage> {
               ),
               richTxt(text: "Switch Password"),
               CustomTextField(
+                disableCopyPaste: true,
                 controller: _password,
                 validator: (value) {
                   if (value!.length <= 7) {
@@ -221,10 +222,12 @@ class _AddNewSwitchesPageState extends State<AddNewSwitchesPage> {
                   }
                   return null;
                 },
+                disableCopyPaste: true,
                 hintText: "New Pin",
               ),
               richTxt(text: "Switch Passkey"),
               CustomTextField(
+                disableCopyPaste: true,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "PassKey Cannot be empty";
